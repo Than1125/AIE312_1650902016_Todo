@@ -1,0 +1,21 @@
+<h1>รายการงาน (Tasks)</h1>
+
+<%= form_with(model: @task, local: true) do |form| %>
+  <div>
+    <%= form.label :status, 'รายละเอียดงาน' %>
+    <%= form.text_field :status %>
+  </div>
+  <div>
+    <%= form.submit 'สร้างงานใหม่' %>
+  </div>
+<% end %>
+
+<h2>งานที่ยังไม่เสร็จ</h2>
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      <%= task.status %>
+      <%= link_to 'ทำเครื่องหมายว่าสำเร็จ', complete_task_path(task), method: :get %>
+    </li>
+  <% end %>
+</ul>
